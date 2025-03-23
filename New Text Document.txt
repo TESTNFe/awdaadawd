@@ -1,4 +1,231 @@
-import base64
-d = "aW1wb3J0IHJlcXVlc3RzCmltcG9ydCByYW5kb20KaW1wb3J0IHRpbWUKaW1wb3J0IG9zCmltcG9ydCB1cmxsaWIzCmltcG9ydCB0aHJlYWRpbmcKaW1wb3J0IHN5cwppbXBvcnQgc2h1dGlsCmltcG9ydCByZXF1ZXN0cwppbXBvcnQgcHlhdXRvZ3VpCmltcG9ydCBweXBlcmNsaXAKaW1wb3J0IHRpbWUKaW1wb3J0IHN1YnByb2Nlc3MKZnJvbSBweW1zZ2JveCBpbXBvcnQgcGFzc3dvcmQKCgpvcy5zeXN0ZW0oImNoY3AgNjUwMDEiKQpvcy5zeXN0ZW0oImNscyIpCm9zLnN5c3RlbSgidGl0bGUgTmlnZ2EgUHVsbGVyIC0gYnkgc285YSIpCgpkZWYgZ2V0X3Rlcm1pbmFsX3dpZHRoKCk6CiAgICAiIiJHZXQgdGhlIHdpZHRoIG9mIHRoZSB0ZXJtaW5hbCB3aW5kb3cuIiIiCiAgICByZXR1cm4gc2h1dGlsLmdldF90ZXJtaW5hbF9zaXplKCg4MCwgMjApKS5jb2x1bW5zCgpkZWYgY2VudGVyX3RleHQodGV4dCwgd2lkdGgpOgogICAgIiIiQ2VudGVyIHRoZSB0ZXh0IGJhc2VkIG9uIHRoZSB0ZXJtaW5hbCB3aWR0aC4iIiIKICAgIHJldHVybiB0ZXh0LmNlbnRlcih3aWR0aCkKCmRlZiByZ2JfdG9fYW5zaShyLCBnLCBiKToKICAgICIiIkNvbnZlcnQgUkdCIHZhbHVlcyB0byBBTlNJIGVzY2FwZSBjb2RlLiIiIgogICAgcmV0dXJuIGYiXDAzM1szODsyO3tyfTt7Z307e2J9bSIKI2xldmVsCmRlZiBzbW9vdGhfZ3JhZGllbnRfcHJpbnQodGV4dCwgc3RhcnRfY29sb3IsIGVuZF9jb2xvcik6CiAgICAiIiJQcmludCB0ZXh0IHdpdGggYSBzbW9vdGggZ3JhZGllbnQgYmV0d2VlbiBzdGFydF9jb2xvciBhbmQgZW5kX2NvbG9yLiIiIgogICAgbGVuZ3RoID0gbGVuKHRleHQpCiAgICByMSwgZzEsIGIxID0gc3RhcnRfY29sb3IKICAgIHIyLCBnMiwgYjIgPSBlbmRfY29sb3IKCiAgICBmb3IgaSwgY2hhciBpbiBlbnVtZXJhdGUodGV4dCk6CiAgICAgICAgaWYgY2hhciAhPSAiICI6CiAgICAgICAgICAgIHJhdGlvID0gaSAvIG1heChsZW5ndGggLSAxLCAxKQogICAgICAgICAgICByID0gaW50KHIxICsgKHIyIC0gcjEpICogcmF0aW8pCiAgICAgICAgICAgIGcgPSBpbnQoZzEgKyAoZzIgLSBnMSkgKiByYXRpbykKICAgICAgICAgICAgYiA9IGludChiMSArIChiMiAtIGIxKSAqIHJhdGlvKQogICAgICAgICAgICBzeXMuc3Rkb3V0LndyaXRlKGYie3JnYl90b19hbnNpKHIsIGcsIGIpfXtjaGFyfSIpCiAgICAgICAgZWxzZToKICAgICAgICAgICAgc3lzLnN0ZG91dC53cml0ZShjaGFyKQogICAgc3lzLnN0ZG91dC53cml0ZSgiXDAzM1swbVxuIikgICMgUmVzZXQgY29sb3IgYWZ0ZXIgbGluZQoKIyBPdmVycmlkZSB0aGUgZGVmYXVsdCBwcmludCBmdW5jdGlvbgpkZWYgcHJpbnRfZ3JhZGllbnQodGV4dCwgc3RhcnRfY29sb3I9KDI1NSwgMCwgMCksIGVuZF9jb2xvcj0oNzUsIDAsIDE0OCkpOgogICAgc21vb3RoX2dyYWRpZW50X3ByaW50KHRleHQsIHN0YXJ0X2NvbG9yLCBlbmRfY29sb3IpCgpzdGFydF9jb2xvciA9ICgyNTUsIDAsIDApICAgICMgUmVkCmVuZF9jb2xvciA9ICg3NSwgMCwgMTQ4KQoKdXJsbGliMy5kaXNhYmxlX3dhcm5pbmdzKHVybGxpYjMuZXhjZXB0aW9ucy5JbnNlY3VyZVJlcXVlc3RXYXJuaW5nKQpEb21haW5FeHBhbnNpb24gPSB0aHJlYWRpbmcuRXZlbnQoKQoKIyBHZW5lcmF0ZSByYW5kb20gYWNjb3VudCBJRHMgYmFzZWQgb24gdGhlIHllYXIKZGVmIGdlbmVyYXRlX2FjY291bnRfaWQoeWVhcik6CiAgICBpZiB5ZWFyID09IDIwMTY6CiAgICAgICAgcmV0dXJuIHJhbmRvbS5yYW5kaW50KDEsIDY5NzIzKQogICAgZWxpZiB5ZWFyID09IDIwMTc6CiAgICAgICAgcmV0dXJuIHJhbmRvbS5yYW5kaW50KDY5NzI0LCA0MDAwMDApCiAgICBlbGlmIHllYXIgPT0gMjAxODoKICAgICAgICByZXR1cm4gcmFuZG9tLnJhbmRpbnQoNDAwMDAxLCAxMjkwMDAxKQogICAgZWxpZiB5ZWFyID09IDIwMTk6CiAgICAgICAgcmV0dXJuIHJhbmRvbS5yYW5kaW50KDEyOTAwMDIsIDMzMTQ1NTIpCiAgICBlbGlmIHllYXIgPT0gMjAyMDoKICAgICAgICByZXR1cm4gcmFuZG9tLnJhbmRpbnQoMzMxNDU1MywgMTExNTk2MzEpCiAgICBlbGlmIHllYXIgPT0gMjAyMToKICAgICAgICByZXR1cm4gcmFuZG9tLnJhbmRpbnQoMTExNTk2MzIsIDQwNzM0ODA4KQogICAgZWxpZiB5ZWFyID09IDE6CiAgICAgICAgcmV0dXJuIHJhbmRvbS5yYW5kaW50KDM0NjQ0NTcsIDY0NjQ0NTcpCiAgICAjZWxpZiB5ZWFyID09IDM6CiAgICAjICAgIHdpdGggb3BlbihUZWFjaGVycywgJ3InKSBhcyBmaWxlOgogICAgIyAgICAgeWVhciA9IFtsaW5lLnN0cmlwKCkgZm9yIGxpbmUgaW4gZmlsZSBpZiBsaW5lLnN0cmlwKCkuaXNkaWdpdCgpXQogICAgZWxzZToKICAgICAgICByYWlzZSBWYWx1ZUVycm9yKCJJbnZhbGlkIHllYXIiKQoKIyBGZXRjaCBhY2NvdW50IGRhdGEgZnJvbSB0aGUgQVBJCmRlZiBmZXRjaF9hY2NvdW50X2RhdGEoYWNjb3VudF9pZCk6CiAgICBhY2NvdW50X3VybCA9IGYiaHR0cHM6Ly9hcGltLnJlYy5uZXQvYWNjb3VudHMvYWNjb3VudC97YWNjb3VudF9pZH0iCiAgICB0cnk6CiAgICAgICAgcmVzcG9uc2UgPSByZXF1ZXN0cy5nZXQoYWNjb3VudF91cmwpCiAgICAgICAgcmVzcG9uc2UucmFpc2VfZm9yX3N0YXR1cygpCiAgICAgICAgcmV0dXJuIHJlc3BvbnNlLmpzb24oKQogICAgZXhjZXB0IHJlcXVlc3RzLmV4Y2VwdGlvbnMuSFRUUEVycm9yIGFzIGU6CiAgICAgICAgaWYgcmVzcG9uc2Uuc3RhdHVzX2NvZGUgPT0gNDA0OgogICAgICAgICAgICByZXR1cm4gTm9uZQogICAgICAgIGVsaWYgcmVzcG9uc2Uuc3RhdHVzX2NvZGUgPT0gNDI5OgogICAgICAgICAgICBEb21haW5FeHBhbnNpb24uc2V0KCkKICAgICAgICAgICAgdGltZS5zbGVlcCg1KQogICAgICAgICAgICBEb21haW5FeHBhbnNpb24uY2xlYXIoKQogICAgICAgICAgICByZXR1cm4gTm9uZQogICAgICAgIGVsaWYgcmVzcG9uc2Uuc3RhdHVzX2NvZGUgPT0gNDAzOgogICAgICAgICAgICBwcmludF9ncmFkaWVudChmIkVSUk9SOiBBY2Nlc3MgZm9yYmlkZGVuIikKICAgICAgICAgICAgb3Muc3lzdGVtKCJleGl0IikKICAgICAgICBlbHNlOgogICAgICAgICAgICBwcmludF9ncmFkaWVudChmIkVSUk9SOiBIVFRQIGVycm9yIG9jY3VycmVkIikKICAgICAgICAgICAgb3Muc3lzdGVtKCJleGl0IikKICAgIGV4Y2VwdCByZXF1ZXN0cy5leGNlcHRpb25zLlJlcXVlc3RFeGNlcHRpb24gYXMgZToKICAgICAgICBwcmludF9ncmFkaWVudChmIkVSUk9SOiBSZXF1ZXN0IGV4Y2VwdGlvbiBvY2N1cnJlZCIpCiAgICAgICAgb3Muc3lzdGVtKCJleGl0IikKCiMgQ2hlY2sgaWYgdGhlIHVzZXJuYW1lIGlzIGluIHRoZSBsZWFrIGRhdGFiYXNlCmRlZiBjaGVja19sZWFrX2RhdGFiYXNlKHVzZXJuYW1lKToKICAgIHVybCA9IGYiaHR0cHM6Ly9sZWFrY2hlY2suaW8vYXBpL3B1YmxpYz9jaGVjaz17dXNlcm5hbWV9IgogICAgcmVzcG9uc2UgPSByZXF1ZXN0cy5nZXQodXJsKQogICAgaWYgcmVzcG9uc2Uuc3RhdHVzX2NvZGUgPT0gMjAwOgogICAgICAgIGRhdGEgPSByZXNwb25zZS5qc29uKCkKICAgICAgICByZXR1cm4gZGF0YS5nZXQoInN1Y2Nlc3MiLCBGYWxzZSkKICAgIHJldHVybiBGYWxzZQoKIyBDbGVvIFB1bGxlciB0aXRsZQpDTEVPX1RJVExFID0gZiIiIgogLyQkICAgLyQkIC8kJCQkJCQgIC8kJCQkJCQgICAvJCQkJCQkICAgLyQkJCQkJCAgICAgICAgICAvJCQkJCQkJCAgLyQkICAgLyQkIC8kJCAgICAgICAvJCQgICAgICAgLyQkJCQkJCQkIC8kJCQkJCQkIAp8ICQkJCB8ICQkfF8gICQkXy8gLyQkX18gICQkIC8kJF9fICAkJCAvJCRfXyAgJCQgICAgICAgIHwgJCRfXyAgJCR8ICQkICB8ICQkfCAkJCAgICAgIHwgJCQgICAgICB8ICQkX19fX18vfCAkJF9fICAkJAp8ICQkJCR8ICQkICB8ICQkICB8ICQkICBcX18vfCAkJCAgXF9fL3wgJCQgIFwgJCQgICAgICAgIHwgJCQgIFwgJCR8ICQkICB8ICQkfCAkJCAgICAgIHwgJCQgICAgICB8ICQkICAgICAgfCAkJCAgXCAkJAp8ICQkICQkICQkICB8ICQkICB8ICQkIC8kJCQkfCAkJCAvJCQkJHwgJCQkJCQkJCQgLyQkJCQkJHwgJCQkJCQkJC98ICQkICB8ICQkfCAkJCAgICAgIHwgJCQgICAgICB8ICQkJCQkICAgfCAkJCQkJCQkLwp8ICQkICAkJCQkICB8ICQkICB8ICQkfF8gICQkfCAkJHxfICAkJHwgJCRfXyAgJCR8X19fX19fL3wgJCRfX19fLyB8ICQkICB8ICQkfCAkJCAgICAgIHwgJCQgICAgICB8ICQkX18vICAgfCAkJF9fICAkJAp8ICQkXCAgJCQkICB8ICQkICB8ICQkICBcICQkfCAkJCAgXCAkJHwgJCQgIHwgJCQgICAgICAgIHwgJCQgICAgICB8ICQkICB8ICQkfCAkJCAgICAgIHwgJCQgICAgICB8ICQkICAgICAgfCAkJCAgXCAkJAp8ICQkIFwgICQkIC8kJCQkJCR8ICAkJCQkJCQvfCAgJCQkJCQkL3wgJCQgIHwgJCQgICAgICAgIHwgJCQgICAgICB8ICAkJCQkJCQvfCAkJCQkJCQkJHwgJCQkJCQkJCR8ICQkJCQkJCQkfCAkJCAgfCAkJAp8X18vICBcX18vfF9fX19fXy8gXF9fX19fXy8gIFxfX19fX18vIHxfXy8gIHxfXy8gICAgICAgIHxfXy8gICAgICAgXF9fX19fXy8gfF9fX19fX19fL3xfX19fX19fXy98X19fX19fX18vfF9fLyAgfF9fLwoKIiIiCgpkZWYgY2xlb19wdWxsZXIoKToKICAgIHByaW50X2dyYWRpZW50KENMRU9fVElUTEUpCiAgICB3aXRoIG9wZW4oIlRva2VuLnR4dCIsICJyIikgYXMgZjoKICAgICAgICBkaXNjb3JkX3Rva2VuID0gZi5yZWFkKCkKCiAgICBjaGFubmVsX2lkID0gaW50KGlucHV0KGYiICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXHgxYlszODs1OzEyN21FbnRlciBEaXNjb3JkIENoYW5uZWwgSUQ6ICIpKQogICAgZGVsYXkgPSBpbnQoaW5wdXQoZiIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXHgxYlszODs1OzEyN21FbnRlciBkZWxheTogIikpCiAgICB5ZWFyID0gaW50KGlucHV0KGYiICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFx4MWJbMzg7NTsxMjdtRW50ZXIgdGhlIHllYXIgeW91IGxpa2UgdG8gZ2VuZXJhdGUgSURzIGZvciAoMjAxNiAtIDIwMjEpIGZvciAnZm5hZicgdHlwZSAxOiAiKSkKICAgIGxldmVsX251bWJlciA9IGlucHV0KGYiICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBceDFiWzM4OzU7MTI3bUVudGVyIExldmVsIHlvdSB3YW50IChFbnRlciBOb3RoaW5nIGZvciBubyBsZXZlbCk6ICIpCgogICAgb3Muc3lzdGVtKCJjbHMiKQogICAgaGVhZGVycyA9IHsKICAgICAgICAiQXV0aG9yaXphdGlvbiI6IGRpc2NvcmRfdG9rZW4sCiAgICAgICAgJ0FjY2VwdCc6ICcqLyonLAogICAgICAgICdBY2NlcHQtTGFuZ3VhZ2UnOiAnZXMtRVMsZXM7cT0wLjknLAogICAgICAgICdDb25uZWN0aW9uJzogJ2tlZXAtYWxpdmUnLAogICAgICAgICdSZWZlcmVyJzogJ2h0dHBzOi8vZGlzY29yZC5jb20vJywKICAgICAgICAnU2VjLUZldGNoLURlc3QnOiAnZW1wdHknLAogICAgICAgICdTZWMtRmV0Y2gtTW9kZSc6ICdjb3JzJywKICAgICAgICAnU2VjLUZldGNoLVNpdGUnOiAnc2FtZS1vcmlnaW4nLAogICAgICAgICdTZWMtR1BDJzogJzEnLAogICAgICAgICdVc2VyLUFnZW50JzogJ01vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8xMTQuMC4wLjAgU2FmYXJpLzUzNy4zNicsCiAgICAgICAgJ1gtVHJhY2snOiAnZXlKdmN5STZJa2xQVXlJc0ltSnliM2R6WlhJaU9pSlRZV1psSWl3aWMzbHpkR1Z0WDJ4dlkyRnNaU0k2SW1WdUxVZENJaXdpWW5KdmQzTmxjbDkxYzJWeVgyRm5aVzUwSWpvaVRXOTZhV3hzWVM4MUxqQWdLRWxRYUc5dVpUc2dRMUJWSUVsdWRHVnlibUZzSUZCeWIyUjFZM1J6SUZOMGIzSmxMQ0JoY0hCc2FXTmhkR2x2Ymk4eU1EVXVNUzR4TlNBb1MwaFVUVXdwSUZabGNuTnBiMjR2TVRVdU1DQk5iMkpwYkdVdk1UVkZNalE0SUZOaFptRnlhUzgyTURRdU1TSXNJbUp5YjNkelpYSmZkbVZ5YzJsdmJpSTZJakUxTGpBaUxDSnZjMTkySWpvaUlpd2ljbVZtWlhKeVpYSWlPaUlpTENKeVpXWmxjbkpwYm1kZlpHOXRZV2x1SWpvaUlpd2ljbVZtWlhKeVpYSmZaRzl0WVdsdVgyTnZiMnRwWlNJNkluTjBZV0pzWlNJc0ltTnNhV1Z1ZEY5aWRXbHNaRjl1ZFcxaVpYSWlPams1T1Rrc0ltTnNhV1Z1ZEY5bGRtVnVkRjl6YjNWeVkyVWlPaUp6ZEdGaWJHVWlMQ0pqYkdsbGJuUmZaWFpsYm5SZmMyOTFjbU5sSWpvaWMzUmhZbXhsSW4wJwogICAgfQoKICAgIHVzZXIgPSByZXF1ZXN0cy5nZXQoImh0dHBzOi8vZGlzY29yZC5jb20vYXBpL3Y5L3VzZXJzL0BtZSIsIGhlYWRlcnM9aGVhZGVycykKICAgIGlmIHVzZXIuc3RhdHVzX2NvZGUgIT0gMjAwOgogICAgICAgIHByaW50X2dyYWRpZW50KGYiRVJST1I6IEludmFsaWQgRGlzY29yZCB0b2tlbi4iKQogICAgICAgIHRpbWUuc2xlZXAoMykKICAgICAgICBvcy5zeXN0ZW0oImV4aXQiKQoKICAgIG5vX2RlbGF5ID0gVHJ1ZQogICAgd2hpbGUgVHJ1ZToKICAgICAgICBpZiBub3Qgbm9fZGVsYXk6CiAgICAgICAgICAgIHRpbWUuc2xlZXAoZGVsYXkpCiAgICAgICAgZWxzZToKICAgICAgICAgICAgbm9fZGVsYXkgPSBGYWxzZQojNDI5CiAgICAgICAgYWNjb3VudF9pZCA9IGdlbmVyYXRlX2FjY291bnRfaWQoeWVhcikKICAgICAgICBhY2NvdW50X2RhdGEgPSBmZXRjaF9hY2NvdW50X2RhdGEoYWNjb3VudF9pZCkKCiAgICAgICAgaWYgYWNjb3VudF9kYXRhIGlzIE5vbmU6CiAgICAgICAgICAgIHByaW50X2dyYWRpZW50KGYiRVJST1I6IFVuYWJsZSB0byBmZXRjaCBhY2NvdW50IGRhdGEiKQogICAgICAgICAgICBub19kZWxheSA9IFRydWUKICAgICAgICAgICAgY29udGludWUKCiAgICAgICAgdXNlcm5hbWUgPSBhY2NvdW50X2RhdGEuZ2V0KCd1c2VybmFtZScsICdVbmtub3duIFVzZXJuYW1lJykKCiAgICAgICAgaWYgJ0d1ZXN0LScgaW4gdXNlcm5hbWUgb3IgJ1VzZXItJyBpbiB1c2VybmFtZToKICAgICAgICAgICAgcHJpbnRfZ3JhZGllbnQoZiJTa2lwcGluZyBndWVzdCBhY2NvdW50cy4iKQogICAgICAgICAgICBub19kZWxheSA9IFRydWUKICAgICAgICAgICAgY29udGludWUKCiAgICAgICAgaWYgbm90IGNoZWNrX2xlYWtfZGF0YWJhc2UodXNlcm5hbWUpOgogICAgICAgICAgICBwcmludF9ncmFkaWVudChmIlNraXBwaW5nICd7dXNlcm5hbWV9JyIpCiAgICAgICAgICAgIG5vX2RlbGF5ID0gVHJ1ZQogICAgICAgICAgICBjb250aW51ZQoKICAgICAgICAjIEZpeGVkIFVSTCBieSBhZGRpbmcgJ2h0dHBzOi8vJwogICAgICAgIGxldmVsX2FwaV91cmwgPSBmImh0dHBzOi8vYXBpLnJlYy5uZXQvYXBpL3BsYXllcnMvdjIvcHJvZ3Jlc3Npb24vYnVsaz9pZD17YWNjb3VudF9pZH0iCiAgICAgICAgbGV2ZWxfcmVzcG9uc2UgPSByZXF1ZXN0cy5nZXQobGV2ZWxfYXBpX3VybCkKICAgICAgICBpZiBsZXZlbF9yZXNwb25zZS5zdGF0dXNfY29kZSA9PSAyMDA6CiAgICAgICAgICAgIGxldmVsX2RhdGEgPSBsZXZlbF9yZXNwb25zZS5qc29uKCkKICAgICAgICAgICAgaWYgaXNpbnN0YW5jZShsZXZlbF9kYXRhLCBsaXN0KSBhbmQgbGV2ZWxfZGF0YToKICAgICAgICAgICAgICAgIGxldmVsX2ZvdW5kID0gRmFsc2UjPT0KICAgICAgICAgICAgICAgIGZvciB1c2VyX2RhdGEgaW4gbGV2ZWxfZGF0YToKICAgICAgICAgICAgICAgICAgICBsZXZlbCA9IHVzZXJfZGF0YS5nZXQoJ0xldmVsJykKICAgICAgICAgICAgICAgICAgICBpZiBsZXZlbCA9PSBsZXZlbF9udW1iZXI6CiAgICAgICAgICAgICAgICAgICAgICAgIHByaW50X2dyYWRpZW50KGYiTGV2ZWwgRm91bmQgZm9yIGFjY291bnQ6IHt1c2VybmFtZX0iKQogICAgICAgICAgICAgICAgICAgICAgICBsZXZlbF9mb3VuZCA9IFRydWUKICAgICAgICAgICAgICAgICAgICAgICAgYnJlYWsKICAgICAgICAgICAgICAgICAgICBpZiBsZXZlbF9udW1iZXIgPT0gIiI6CiAgICAgICAgICAgICAgICAgICAgICAgIHByaW50X2dyYWRpZW50KGYiTGV2ZWwgRm91bmQgZm9yIGFjY291bnQ6IHt1c2VybmFtZX0iKQogICAgICAgICAgICAgICAgICAgICAgICBsZXZlbF9mb3VuZCA9IFRydWUKICAgICAgICAgICAgICAgICAgICAgICAgYnJlYWsKICAgICAgICAgICAgICAgICMgU2tpcCB0byB0aGUgbmV4dCBhY2NvdW50IGlmIHRoZSBsZXZlbCBpcyBub3QgZm91bmQKICAgICAgICAgICAgICAgIGlmIG5vdCBsZXZlbF9mb3VuZDoKICAgICAgICAgICAgICAgICAgICBwcmludF9ncmFkaWVudChmIkxldmVsIG5vdCBzYW1lIGxldmVsIHUgcHV0IGZvciBhY2NvdW50OiB7dXNlcm5hbWV9LiBhY2MgbGV2ZWwgaXMge2xldmVsfSIpCiAgICAgICAgICAgICAgICAgICAgbm9fZGVsYXkgPSBUcnVlCiAgICAgICAgICAgICAgICAgICAgY29udGludWUKICAgICAgICAgICAgZWxzZToKICAgICAgICAgICAgICAgIHByaW50X2dyYWRpZW50KGYiRVJST1I6IEludmFsaWQgbGV2ZWwgZGF0YSBmb3JtYXQuIikKICAgICAgICAgICAgICAgIG5vX2RlbGF5ID0gVHJ1ZQogICAgICAgICAgICAgICAgY29udGludWUKICAgICAgICBlbHNlOgogICAgICAgICAgICBwcmludF9ncmFkaWVudChmIkVSUk9SOiBGYWlsZWQgdG8gZmV0Y2ggbGV2ZWwgZGF0YSBmb3IgYWNjb3VudDoge3VzZXJuYW1lfSIpCiAgICAgICAgICAgIG5vX2RlbGF5ID0gVHJ1ZQogICAgICAgICAgICBjb250aW51ZQoKICAgICAgICAjIElmIHRoZSBsZXZlbCBpcyBmb3VuZCwgc2VuZCB0aGUgbWVzc2FnZSB0byBEaXNjb3JkCiAgICAgICAgbWVzc2FnZV9jb250ZW50ID0gZiItY2hlY2sge3VzZXJuYW1lfSIKICAgICAgICBkaXNjb3JkX3VybCA9IGYiaHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvdjkvY2hhbm5lbHMve2NoYW5uZWxfaWR9L21lc3NhZ2VzIgogICAgICAgIHBheWxvYWQgPSB7ImNvbnRlbnQiOiBtZXNzYWdlX2NvbnRlbnR9CiAgICAgICAgc2VuZGRpc2NvcmQgPSByZXF1ZXN0cy5wb3N0KGRpc2NvcmRfdXJsLCBwYXlsb2FkLCBoZWFkZXJzPWhlYWRlcnMpCiAgICAgICAgaWYgc2VuZGRpc2NvcmQgPT0gIjxSZXNwb25zZSBbMjAwXT4iOgogICAgICAgICAgICBwcmludF9ncmFkaWVudChmInt1c2VybmFtZX0gaGFzIGJlZW4gc2VuZGVkIikKICAgICAgICAgICAgY29udGludWUKICAgICAgICBpZiBzZW5kZGlzY29yZCA9PSAiPFJlc3BvbnNlIFs0MDNdPiI6CiAgICAgICAgICAgIHByaW50X2dyYWRpZW50KCJhZGQgbmV3IHRva2VuIHBseiBkYWRkeSEiKQogICAgICAgICAgICB0aW1lLnNsZWVwKDUpCiAgICAgICAgICAgIHJldHVybiNsZXZlbCBmb3VuZAoKY2xlb19wdWxsZXIoKQ=="
-decoded_code = base64.b64decode(d).decode()
-exec(decoded_code)
+import requests
+import random
+import time
+import os
+import urllib3
+import threading
+import sys
+import shutil
+import requests
+import pyautogui
+import pyperclip
+import time
+import subprocess
+from pymsgbox import password
+
+
+os.system("chcp 65001")
+os.system("cls")
+os.system("title Nigga Puller - by so9a")
+
+def get_terminal_width():
+    """Get the width of the terminal window."""
+    return shutil.get_terminal_size((80, 20)).columns
+
+def center_text(text, width):
+    """Center the text based on the terminal width."""
+    return text.center(width)
+
+def rgb_to_ansi(r, g, b):
+    """Convert RGB values to ANSI escape code."""
+    return f"\033[38;2;{r};{g};{b}m"
+#level
+def smooth_gradient_print(text, start_color, end_color):
+    """Print text with a smooth gradient between start_color and end_color."""
+    length = len(text)
+    r1, g1, b1 = start_color
+    r2, g2, b2 = end_color
+
+    for i, char in enumerate(text):
+        if char != " ":
+            ratio = i / max(length - 1, 1)
+            r = int(r1 + (r2 - r1) * ratio)
+            g = int(g1 + (g2 - g1) * ratio)
+            b = int(b1 + (b2 - b1) * ratio)
+            sys.stdout.write(f"{rgb_to_ansi(r, g, b)}{char}")
+        else:
+            sys.stdout.write(char)
+    sys.stdout.write("\033[0m\n")  # Reset color after line
+
+# Override the default print function
+def print_gradient(text, start_color=(255, 0, 0), end_color=(75, 0, 148)):
+    smooth_gradient_print(text, start_color, end_color)
+
+start_color = (255, 0, 0)    # Red
+end_color = (75, 0, 148)
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+DomainExpansion = threading.Event()
+
+# Generate random account IDs based on the year
+def generate_account_id(year):
+    if year == 2016:
+        return random.randint(1, 69723)
+    elif year == 2017:
+        return random.randint(69724, 400000)
+    elif year == 2018:
+        return random.randint(400001, 1290001)
+    elif year == 2019:
+        return random.randint(1290002, 3314552)
+    elif year == 2020:
+        return random.randint(3314553, 11159631)
+    elif year == 2021:
+        return random.randint(11159632, 40734808)
+    elif year == 1:
+        return random.randint(3464457, 6464457)
+    #elif year == 3:
+    #    with open(Teachers, 'r') as file:
+    #     year = [line.strip() for line in file if line.strip().isdigit()]
+    else:
+        raise ValueError("Invalid year")
+
+# Fetch account data from the API
+def fetch_account_data(account_id):
+    account_url = f"https://apim.rec.net/accounts/account/{account_id}"
+    try:
+        response = requests.get(account_url)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.HTTPError as e:
+        if response.status_code == 404:
+            return None
+        elif response.status_code == 429:
+            DomainExpansion.set()
+            time.sleep(5)
+            DomainExpansion.clear()
+            return None
+        elif response.status_code == 403:
+            print_gradient(f"ERROR: Access forbidden")
+            os.system("exit")
+        else:
+            print_gradient(f"ERROR: HTTP error occurred")
+            os.system("exit")
+    except requests.exceptions.RequestException as e:
+        print_gradient(f"ERROR: Request exception occurred")
+        os.system("exit")
+
+# Check if the username is in the leak database
+def check_leak_database(username):
+    url = f"https://leakcheck.io/api/public?check={username}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        return data.get("success", False)
+    return False
+
+# Cleo Puller title
+CLEO_TITLE = f"""
+ /$$   /$$ /$$$$$$  /$$$$$$   /$$$$$$   /$$$$$$          /$$$$$$$  /$$   /$$ /$$       /$$       /$$$$$$$$ /$$$$$$$ 
+| $$$ | $$|_  $$_/ /$$__  $$ /$$__  $$ /$$__  $$        | $$__  $$| $$  | $$| $$      | $$      | $$_____/| $$__  $$
+| $$$$| $$  | $$  | $$  \__/| $$  \__/| $$  \ $$        | $$  \ $$| $$  | $$| $$      | $$      | $$      | $$  \ $$
+| $$ $$ $$  | $$  | $$ /$$$$| $$ /$$$$| $$$$$$$$ /$$$$$$| $$$$$$$/| $$  | $$| $$      | $$      | $$$$$   | $$$$$$$/
+| $$  $$$$  | $$  | $$|_  $$| $$|_  $$| $$__  $$|______/| $$____/ | $$  | $$| $$      | $$      | $$__/   | $$__  $$
+| $$\  $$$  | $$  | $$  \ $$| $$  \ $$| $$  | $$        | $$      | $$  | $$| $$      | $$      | $$      | $$  \ $$
+| $$ \  $$ /$$$$$$|  $$$$$$/|  $$$$$$/| $$  | $$        | $$      |  $$$$$$/| $$$$$$$$| $$$$$$$$| $$$$$$$$| $$  | $$
+|__/  \__/|______/ \______/  \______/ |__/  |__/        |__/       \______/ |________/|________/|________/|__/  |__/
+
+"""
+
+def cleo_puller():
+    print_gradient(CLEO_TITLE)
+    with open("Token.txt", "r") as f:
+        discord_token = f.read()
+
+    channel_id = int(input(f"                                       \x1b[38;5;127mEnter Discord Channel ID: "))
+    delay = int(input(f"                                        \x1b[38;5;127mEnter delay: "))
+    year = int(input(f"                                     \x1b[38;5;127mEnter the year you like to generate IDs for (2016 - 2021) for 'fnaf' type 1: "))
+    level_number = input(f"                                   \x1b[38;5;127mEnter Level you want (Enter Nothing for no level): ")
+
+    os.system("cls")
+    headers = {
+        "Authorization": discord_token,
+        'Accept': '*/*',
+        'Accept-Language': 'es-ES,es;q=0.9',
+        'Connection': 'keep-alive',
+        'Referer': 'https://discord.com/',
+        'Sec-Fetch-Dest': 'empty',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'same-origin',
+        'Sec-GPC': '1',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
+        'X-Track': 'eyJvcyI6IklPUyIsImJyb3dzZXIiOiJTYWZlIiwic3lzdGVtX2xvY2FsZSI6ImVuLUdCIiwiYnJvd3Nlcl91c2VyX2FnZW50IjoiTW96aWxsYS81LjAgKElQaG9uZTsgQ1BVIEludGVybmFsIFByb2R1Y3RzIFN0b3JlLCBhcHBsaWNhdGlvbi8yMDUuMS4xNSAoS0hUTUwpIFZlcnNpb24vMTUuMCBNb2JpbGUvMTVFMjQ4IFNhZmFyaS82MDQuMSIsImJyb3dzZXJfdmVyc2lvbiI6IjE1LjAiLCJvc192IjoiIiwicmVmZXJyZXIiOiIiLCJyZWZlcnJpbmdfZG9tYWluIjoiIiwicmVmZXJyZXJfZG9tYWluX2Nvb2tpZSI6InN0YWJsZSIsImNsaWVudF9idWlsZF9udW1iZXIiOjk5OTksImNsaWVudF9ldmVudF9zb3VyY2UiOiJzdGFibGUiLCJjbGllbnRfZXZlbnRfc291cmNlIjoic3RhYmxlIn0'
+    }
+
+    user = requests.get("https://discord.com/api/v9/users/@me", headers=headers)
+    if user.status_code != 200:
+        print_gradient(f"ERROR: Invalid Discord token.")
+        time.sleep(3)
+        os.system("exit")
+
+    no_delay = True
+    while True:
+        if not no_delay:
+            time.sleep(delay)
+        else:
+            no_delay = False
+#429
+        account_id = generate_account_id(year)
+        account_data = fetch_account_data(account_id)
+
+        if account_data is None:
+            print_gradient(f"ERROR: Unable to fetch account data")
+            no_delay = True
+            continue
+
+        username = account_data.get('username', 'Unknown Username')
+
+        if 'Guest-' in username or 'User-' in username:
+            print_gradient(f"Skipping guest accounts.")
+            no_delay = True
+            continue
+
+        if not check_leak_database(username):
+            print_gradient(f"Skipping '{username}'")
+            no_delay = True
+            continue
+
+        # Fixed URL by adding 'https://'
+        level_api_url = f"https://api.rec.net/api/players/v2/progression/bulk?id={account_id}"
+        level_response = requests.get(level_api_url)
+        if level_response.status_code == 200:
+            level_data = level_response.json()
+            if isinstance(level_data, list) and level_data:
+                level_found = False#==
+                for user_data in level_data:
+                    level = user_data.get('Level')
+                    if level == level_number:
+                        print_gradient(f"Level Found for account: {username}")
+                        level_found = True
+                        break
+                    if level_number == "":
+                        print_gradient(f"Level Found for account: {username}")
+                        level_found = True
+                        break
+                # Skip to the next account if the level is not found
+                if not level_found:
+                    print_gradient(f"Level not same level u put for account: {username}. acc level is {level}")
+                    no_delay = True
+                    continue
+            else:
+                print_gradient(f"ERROR: Invalid level data format.")
+                no_delay = True
+                continue
+        else:
+            print_gradient(f"ERROR: Failed to fetch level data for account: {username}")
+            no_delay = True
+            continue
+
+        # If the level is found, send the message to Discord
+        message_content = f"-check {username}"
+        discord_url = f"https://discord.com/api/v9/channels/{channel_id}/messages"
+        payload = {"content": message_content}
+        senddiscord = requests.post(discord_url, payload, headers=headers)
+        if senddiscord == "<Response [200]>":
+            print_gradient(f"{username} has been sended")
+            continue
+        if senddiscord == "<Response [403]>":
+            print_gradient("add new token plz daddy!")
+            time.sleep(5)
+            return#level found
+
+cleo_puller()
